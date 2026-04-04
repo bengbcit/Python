@@ -1,3 +1,4 @@
+#new style
 def question():
     return input("What is your answer? \n\t")
 
@@ -12,9 +13,9 @@ clean_answer = re.sub(r'\s+', ' ', answer).strip()  # strip() 去掉首尾多余
 final_answer = clean_answer.title()
 
 print(f'hello, {final_answer}!')
-
+#old style
 def question_2():
     return input("What is your answer? \n\t")
 
-answer = question_2().title().replace(" ", "")
+answer = question_2().title().strip()
 print(f'hello, {answer}!')
