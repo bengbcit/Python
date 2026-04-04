@@ -6,6 +6,8 @@ def main():
                         2. Sys Exit\n
                         3. Sys Exit with for loop\n
                         4. Packages and Modules\n
+                        5. APIs\n
+                        6. Importing my_functions\n
                         ''')
 
     match user_select:
@@ -17,8 +19,12 @@ def main():
             sys_exit_for_loop()
         case '4':
             packages_fn()
+        case '5':
+            APIs_fn()
+        case '6':
+            import_my_functions()
         case _:
-            print("Invalid input. Please enter a number between 1 and 3.")
+            print("Invalid input. Please enter a number between 1 and 6.")
 
 
 def random_fn():
@@ -100,7 +106,49 @@ def packages_fn():
         figure_fn = getattr(cowsay, input_figure)
         figure_fn("Hello, World!")
     
+def APIs_fn():
+    '''
+    # 1. API stands for Application Programming Interface, 
+    #    which is a set of rules and protocols for building and interacting with software applications.
+    # 2. APIs allow different software applications to communicate with each other, 
+    #    and they can be used to access data and functionality from other applications.
+    # 3. APIs can be accessed through HTTP requests, 
+    #    and they can return data in various formats such as JSON, XML, etc.
+    # 4. To use an API, you typically need to sign up for an API key, 
+    #    which is a unique identifier that allows you to access the API.
+    '''
+    import requests
+    import sys
+    import json
+    
+    # turn str to a list of str, and then 
+    # mock the sys.argv to be the same as if we run the script from the command line with arguments.
+    input_str = input("Enter a name: ").split()
+    mock_argv = ["Lecture_4.py"] + input_str
+    sys.argv = mock_argv
+    
+    # if user does not provide the things, exit the program
+    if len(sys.argv)!=2:
+        sys.exit()
 
+    response = requests.get("https://itunes.apple.com/search?entity=song&limit=1&term=" + sys.argv[1])
+    # print(response.json())
+    # print(json.dumps(response.json(), indent=2))
+    
+    o = response.json()
+    for result in o["results"]:
+        print(result["trackName"])
+        
+def import_my_functions():
+    import sys
+    
+    input_str = input("Enter a name: ").split()
+    mock_argv = ["Lecture_4.py"] + input_str
+    sys.argv = mock_argv
+    
+    from my_functions import hello 
 
+    if len(sys.argv) == 2:
+        hello(sys.argv[1])
 
 main()
