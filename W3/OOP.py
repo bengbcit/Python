@@ -43,6 +43,7 @@ class Truck(Vehicle):
 Here we create a list of different vehicle instances and demonstrate polymorphism by calling the speak and info methods on each vehicle, 
 which will execute the overridden methods specific to each vehicle type
 '''
+
 vehicles = [Car("Tesla", 120), Bike("Giant", 20), Truck("Volvo", 80)]
 
 # We loop through each vehicle in the list and print the output of the speak and info methods, 
